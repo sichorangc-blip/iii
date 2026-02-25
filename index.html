@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>아이셋 | iii</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="nav">
+      <div class="brand">
+        <div class="logo">iii</div>
+        <div>아이셋</div>
+      </div>
+      <nav>
+        <a href="#about">브랜드</a>
+        <a href="#products">제품</a>
+        <a href="#lookbook">룩북</a>
+        <a href="#contact">문의</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section class="hero">
+  <div class="hero-grid">
+    <div>
+      <h1 class="headline">Set for us, I set</h1>
+      <p class="sub">
+        15년 생활용품 기획자가 ‘내 가족이 쓰는 기준’으로 설계한 제품.
+        과장 없이, 기준은 분명하게.
+      </p>
+      <div class="pill-row">
+        <div class="pill">가족 기준 설계</div>
+        <div class="pill">마스크 라인업</div>
+        <div class="pill">출시 예정</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="badge">브랜드 에센스</div>
+      <p style="margin-top:12px">
+        아이셋(iii)은 ‘우리 가족을 위한 세팅’에서 출발했습니다.
+        매일 사용하는 제품일수록 디테일이 중요하다고 믿습니다.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="products" class="section">
+  <h2 class="section-title">제품 라인업</h2>
+  <div id="productList" class="grid-3"></div>
+</section>
+
+<section id="lookbook" class="section">
+  <h2 class="section-title">룩북</h2>
+  <div id="lookbookList" class="grid-3"></div>
+</section>
+
+<section id="contact" class="section">
+  <h2 class="section-title">문의</h2>
+  <div class="card">
+    <p>카카오 채널 또는 이메일로 문의 가능합니다.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>© iii</div>
+  </div>
+</footer>
+
+<script>
+async function loadProducts(){
+  const res = await fetch('content/products.json');
+  const data = await res.json();
+  const container = document.getElementById('productList');
+
+  data.items.forEach(p=>{
+    const el = document.createElement('div');
+    el.className = 'card product';
+    el.innerHTML = `
+      <div class="thumb">${p.name}</div>
+      <div>
+        <div class="kicker">${p.tagline}</div>
+        <h3>${p.name}</h3>
+        <p class="mini">${p.description}</p>
+      </div>
+    `;
+    container.appendChild(el);
+  });
+}
+
+async function loadLookbook(){
+  const res = await fetch('content/lookbook.json');
+  const data = await res.json();
+  const container = document.getElementById('lookbookList');
+
+  data.collections.forEach(c=>{
+    const el = document.createElement('div');
+    el.className = 'card';
+    el.innerHTML = `
+      <div class="badge">${c.season}</div>
+      <h3>${c.title}</h3>
+      <p class="mini">${c.description}</p>
+    `;
+    container.appendChild(el);
+  });
+}
+
+loadProducts();
+loadLookbook();
+</script>
+
+</body>
+</html>
