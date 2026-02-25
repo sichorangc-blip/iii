@@ -1,0 +1,102 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: "site"
+    label: "사이트 설정"
+    files:
+      - name: "site"
+        label: "브랜드/회사 정보"
+        file: "content/site.json"
+        format: "json"
+        fields:
+          - { label: "브랜드명(한글)", name: "brand_ko", widget: "string" }
+          - { label: "브랜드명(영문)", name: "brand_en", widget: "string" }
+          - { label: "슬로건", name: "slogan", widget: "string" }
+          - { label: "히어로 제목", name: "hero_title", widget: "string" }
+          - { label: "히어로 설명", name: "hero_subtitle", widget: "text" }
+          - { label: "소개 제목", name: "about_title", widget: "string" }
+          - { label: "소개 내용", name: "about_body", widget: "text" }
+          - label: "원칙"
+            name: "principles"
+            widget: "list"
+            fields:
+              - { label: "제목", name: "title", widget: "string" }
+              - { label: "설명", name: "desc", widget: "text" }
+          - label: "문의"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "카카오 채널 URL", name: "kakao_url", widget: "string" }
+              - { label: "이메일", name: "email", widget: "string" }
+              - { label: "전화", name: "phone", widget: "string" }
+              - { label: "응대 시간", name: "hours", widget: "string" }
+          - label: "회사 정보"
+            name: "company_info"
+            widget: "object"
+            fields:
+              - { label: "상호", name: "company_name", widget: "string" }
+              - { label: "사업자등록번호", name: "biz_no", widget: "string" }
+              - { label: "주소(시/구)", name: "address_short", widget: "string" }
+              - { label: "CS/정책 URL", name: "cs_policy_url", widget: "string", required: false }
+
+  - name: "products"
+    label: "제품"
+    files:
+      - name: "products"
+        label: "제품 목록"
+        file: "content/products.json"
+        format: "json"
+        fields:
+          - { label: "카테고리", name: "categories", widget: "list" }
+          - label: "제품 아이템"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "제품명", name: "name", widget: "string" }
+              - { label: "카테고리", name: "category", widget: "string" }
+              - { label: "한줄 설명", name: "tagline", widget: "string" }
+              - { label: "상태", name: "status", widget: "select", options: ["coming_soon", "available"] }
+              - { label: "썸네일", name: "thumb", widget: "image", required: false }
+              - label: "갤러리"
+                name: "gallery"
+                widget: "list"
+                field: { label: "이미지", name: "image", widget: "image" }
+              - label: "핵심 포인트"
+                name: "highlights"
+                widget: "list"
+              - label: "옵션(사이즈/컬러)"
+                name: "variants"
+                widget: "list"
+                fields:
+                  - { label: "타입", name: "type", widget: "string" }
+                  - { label: "옵션", name: "options", widget: "list" }
+              - { label: "설명", name: "description", widget: "text" }
+
+  - name: "lookbook"
+    label: "룩북"
+    files:
+      - name: "lookbook"
+        label: "룩북 컬렉션"
+        file: "content/lookbook.json"
+        format: "json"
+        fields:
+          - label: "컬렉션"
+            name: "collections"
+            widget: "list"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "제목", name: "title", widget: "string" }
+              - { label: "시즌/연도", name: "season", widget: "string" }
+              - { label: "설명", name: "description", widget: "text", required: false }
+              - label: "이미지"
+                name: "images"
+                widget: "list"
+                field: { label: "이미지", name: "image", widget: "image" }
