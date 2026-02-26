@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>iii Admin</title>
 
-    <!-- Identity 위젯(있으면 로그인 플로우 지원) -->
+    <!-- (선택) Netlify Identity 위젯 -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
     <!-- Decap CMS -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
   <body>
-    <!-- body는 비워도 되지만, 일부 브라우저에서 렌더링 안정성을 위해 -->
+    <!-- ✅ Decap CMS가 붙는 루트 -->
+    <div id="nc-root"></div>
+
     <noscript>관리자 모드는 자바스크립트가 필요합니다.</noscript>
   </body>
 </html>
